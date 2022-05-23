@@ -11,25 +11,26 @@ import CartScreen from './screens/CartScreen';
 import Navbar from './components/Navbar'
 import Backdrop from './components/Backdrop'
 import SideDrawer from './components/SideDrawer'
+// import Product from './components/Product'
 
 function App() {
 
   const [sideToggle, setSideToggle] = useState(false);
   return (
     <Router>
-    {/*Navbar for desktop*/}
-    <Navbar click = {() => setSideToggle(true)}/>
-    {/* SideDrawer for mobile*/}
-    <SideDrawer show = {sideToggle} click = {() => setSideToggle(false)}/>
-    {/* Backdrop */}
-    <Backdrop show = {sideToggle} click = {() => setSideToggle(false)}/>
-    <main>
-      <Routes> {/* Apparently this used to be Switch but that changed in react-router-dom v6, https://stackoverflow.com/questions/63124161/attempted-import-error-switch-is-not-exported-from-react-router-dom */}
-        <Route exact path = "/" component = {HomeScreen} />
-        <Route exact path = "/product/:id" component = {ProductScreen}/>
-        <Route exact path = "/cart" component = {CartScreen}/>
-      </Routes>
-    </main>
+      {/*Navbar for desktop*/}
+      <Navbar click = {() => setSideToggle(true)}/>
+      {/* SideDrawer for mobile*/}
+      <SideDrawer show = {sideToggle} click = {() => setSideToggle(false)}/>
+      {/* Backdrop */}
+      <Backdrop show = {sideToggle} click = {() => setSideToggle(false)}/>
+        <main>
+          <Routes> {/* Apparently this used to be Switch but that changed in react-router-dom v6, https://stackoverflow.com/questions/63124161/attempted-import-error-switch-is-not-exported-from-react-router-dom */}
+            <Route path = "/" element = {<HomeScreen/>}/>
+            <Route path = "/product/:id" element = {<ProductScreen/>}/>
+            <Route path = "/cart" element = {<CartScreen/>}/>
+          </Routes>
+        </main>
     
     </Router>
   );
