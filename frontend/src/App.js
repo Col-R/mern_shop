@@ -8,6 +8,7 @@ import CartScreen from './screens/CartScreen';
 
 // components
 import Navbar from './components/Navbar'
+import Backdrop from './components/Backdrop'
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
     <Navbar />
     {/* SideDrawer for mobile*/}
     {/* Backdrop */}
+    <Backdrop />
     <main>
       <Routes> {/* Apparently this used to be Switch but that changed in react-router-dom v6, https://stackoverflow.com/questions/63124161/attempted-import-error-switch-is-not-exported-from-react-router-dom */}
         <Route exact path = "/" component = {HomeScreen} />
