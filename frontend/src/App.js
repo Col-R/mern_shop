@@ -18,11 +18,11 @@ function App() {
   return (
     <Router>
     {/*Navbar for desktop*/}
-    <Navbar />
+    <Navbar click = {() => setSideToggle(true)}/>
     {/* SideDrawer for mobile*/}
-    <SideDrawer show = {sideToggle}/>
+    <SideDrawer show = {sideToggle} click = {() => setSideToggle(false)}/>
     {/* Backdrop */}
-    <Backdrop show = {sideToggle}/>
+    <Backdrop show = {sideToggle} click = {() => setSideToggle(false)}/>
     <main>
       <Routes> {/* Apparently this used to be Switch but that changed in react-router-dom v6, https://stackoverflow.com/questions/63124161/attempted-import-error-switch-is-not-exported-from-react-router-dom */}
         <Route exact path = "/" component = {HomeScreen} />
