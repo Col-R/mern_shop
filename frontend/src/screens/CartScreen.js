@@ -1,4 +1,4 @@
-import './CartScreen.js'
+import './CartScreen.css'
 
 // components
 import CartItem from '../components/CartItem'
@@ -8,6 +8,9 @@ const CartScreen = () => {
   <div className = "cartscreen">
     <div className = "cartscreen__left">
       <h2>Shopping Cart</h2>
+      <CartItem />  {/*its own  component */}
+      <CartItem />  {/*its own  component */}
+      <CartItem />  {/*its own  component */}
       <CartItem />  {/*its own  component */}
       
     </div>
