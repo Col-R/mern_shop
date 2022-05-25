@@ -1,18 +1,33 @@
 import './CartScreen.css'
+import {useSelector, useDispatch} from 'react-redux';
+import {Link} from 'react-router-dom';
 
 // components
 import CartItem from '../components/CartItem'
 
+// action
+import {addToCart} from '../redux/actions/cartActions'
+
 const CartScreen = () => {
+  const dispatch = useDispatch();
+  const cart = useSelector(state => state.cart);
+  const { cartItems } = cart;
+
+  const qtyChangeHandler = (id, qty) => {
+    dispatch(addToCart(id, qty))
+  };
+
   return (
   <div className = "cartscreen">
     <div className = "cartscreen__left">
-      <h2>Shopping Cart</h2>
-      <CartItem />  {/*its own  component */}
-      <CartItem />  {/*its own  component */}
-      <CartItem />  {/*its own  component */}
-      <CartItem />  {/*its own  component */}
-      
+      <h2> Shopping Cart </h2>
+      {cartItems.length === 0 ? (
+        <div>
+          Your Cart is Empty! <Link to = "/">Go Back</Link>
+        </div>
+      ): (
+        cartItems.map((item) => <CartItem item = {item} qtyChangeHandler = {qtyChangeHandler}/>)
+      )}
     </div>
     <div className = "cartscreen__right">
     <div className="cartscreen__info">
