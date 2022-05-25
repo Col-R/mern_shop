@@ -39,7 +39,9 @@ const CartScreen = () => {
         </div>
       ): (
         cartItems.map((item) => (
-          <CartItem item = {item} 
+          <CartItem 
+          key = {item.product}
+          item = {item} 
           qtyChangeHandler = {qtyChangeHandler}
           removeHandler={removeHandler}
           />

@@ -15,8 +15,10 @@ const Navbar = ({click}) => {
     return (
         <nav className = 'navbar'>
         {/*logo */}
-        <div className = "navbar__logo">
-            <h2>MERN shopping cart</h2>
+        <div>
+            <Link to ="/" className = "navbar__logo">
+                <h2>MERN shopping cart</h2>
+            </Link>
         </div>
         {/*links */}
         <ul className = "navbar__links">
