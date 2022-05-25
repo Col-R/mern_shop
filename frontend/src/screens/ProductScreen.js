@@ -1,17 +1,21 @@
 import "./ProductScreen.css";
+
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import {useParams} from 'react-router-dom'
+import {useParams} from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
+
 
 // Actions
 import { getProductDetails } from "../redux/actions/productActions";
 import { addToCart } from "../redux/actions/cartActions";
 
-const ProductScreen = ({ match, history }) => {
+const ProductScreen = ({match}) => {
   let { id } = useParams(); //react-router v6 thing
 
   const [qty, setQty] = useState(1);
   const dispatch = useDispatch();
+  const navigate = useNavigate(); // replaces useHistory in v6
 
   const productDetails = useSelector((state) => state.getProductDetails);
   const { loading, error, product } = productDetails;
@@ -24,9 +28,8 @@ const ProductScreen = ({ match, history }) => {
 
   const addToCartHandler = () => {
     dispatch(addToCart(product._id, qty));
-    history.push('/cart');
+    navigate("/cart");
   };
-
   return (
     
     <div className="productscreen">
