@@ -6,7 +6,7 @@ import {Link} from 'react-router-dom';
 import CartItem from '../components/CartItem'
 
 // action
-import {addToCart} from '../redux/actions/cartActions'
+import {addToCart, removeFromCart} from '../redux/actions/cartActions'
 
 const CartScreen = () => {
   const dispatch = useDispatch();
@@ -15,6 +15,18 @@ const CartScreen = () => {
 
   const qtyChangeHandler = (id, qty) => {
     dispatch(addToCart(id, qty))
+  };
+
+  const removeHandler = (id) => {
+    dispatch(removeFromCart(id));
+  }
+
+  const getCartCount = () => {
+    return cartItems.reduce((qty, item) => Number(item.qty) + qty, 0)
+  };
+
+  const getCartSubtotal = () => {
+    return cartItems.reduce((price, item) => (item.price * item.qty) + price, 0)
   };
 
   return (
@@ -26,13 +38,18 @@ const CartScreen = () => {
           Your Cart is Empty! <Link to = "/">Go Back</Link>
         </div>
       ): (
-        cartItems.map((item) => <CartItem item = {item} qtyChangeHandler = {qtyChangeHandler}/>)
+        cartItems.map((item) => (
+          <CartItem item = {item} 
+          qtyChangeHandler = {qtyChangeHandler}
+          removeHandler={removeHandler}
+          />
+        ))
       )}
     </div>
     <div className = "cartscreen__right">
     <div className="cartscreen__info">
-      <p>Subtotal (0) items</p>
-      <p>$499.99</p>
+      <p>Subtotal ({getCartCount()}) items</p>
+      <p>${getCartSubtotal().toFixed(2)}</p>
     </div>
     <div>
       <button>Proceed to Checkout</button>

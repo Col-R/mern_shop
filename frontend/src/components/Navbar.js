@@ -22,7 +22,7 @@ const Navbar = ({click}) => {
                 </Link>
             </li>
             <li>
-                <Link to ="/shop">
+                <Link to ="/">
                     Shop
                 </Link>
             </li>
